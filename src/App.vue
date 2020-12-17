@@ -4,6 +4,7 @@
       <b-row>
         <b-col sm="6">
           <Navigation />
+          <TitleSection text="Shipping Info" />
         </b-col>
         <b-col sm="5">22</b-col>
       </b-row>
@@ -13,9 +14,10 @@
 
 <script>
 import Navigation from "./components/Navigation";
+import TitleSection from "@/components/TitleSection";
 export default {
   name: "App",
-  components: { Navigation }
+  components: { TitleSection, Navigation }
 };
 </script>
 
