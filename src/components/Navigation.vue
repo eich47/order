@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <nav>
     <b-nav>
       <b-nav-item
         v-for="navItem in navigationItem"
@@ -10,7 +10,7 @@
         >{{ navItem.ui }}</b-nav-item
       >
     </b-nav>
-  </div>
+  </nav>
 </template>
 
 <script>
