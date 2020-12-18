@@ -28,6 +28,12 @@
               :isRequiredField="true"
             />
           </b-col>
+          <b-col sm="6" class="pr-0">
+            <FormInputText
+              placeholder="ZIP"
+              :is-required-field="true"
+            ></FormInputText>
+          </b-col>
         </b-row>
       </b-container>
 
