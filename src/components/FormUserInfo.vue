@@ -16,6 +16,15 @@
         :isRequiredField="false"
       />
       <FormInputLocation placeholder="City" :is-required-field="true" />
+      <FormSelect
+        :options="[
+          { value: null, text: 'Country' },
+          { value: 1, text: 'Minsk' },
+          { value: 2, text: 'London' }
+        ]"
+        :isRequiredField="true"
+      />
+
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
       </b-button>
@@ -28,9 +37,11 @@ import FormSectionTitle from "@/components/FormSectionTitle";
 import FormInputText from "@/components/FormInputText";
 import FormInputPhone from "@/components/FormInputPhone";
 import FormInputLocation from "@/components/FormInputLocation";
+import FormSelect from "@/components/FormSelect";
 export default {
   name: "FormUserInfo",
   components: {
+    FormSelect,
     FormInputLocation,
     FormInputPhone,
     FormInputText,
