@@ -16,14 +16,20 @@
         :isRequiredField="false"
       />
       <FormInputLocation placeholder="City" :is-required-field="true" />
-      <FormSelect
-        :options="[
-          { value: null, text: 'Country' },
-          { value: 1, text: 'Minsk' },
-          { value: 2, text: 'London' }
-        ]"
-        :isRequiredField="true"
-      />
+      <b-container class="wrapper">
+        <b-row>
+          <b-col sm="6" class="pl-0">
+            <FormSelect
+              :options="[
+                { value: null, text: 'Country' },
+                { value: 1, text: 'Minsk' },
+                { value: 2, text: 'London' }
+              ]"
+              :isRequiredField="true"
+            />
+          </b-col>
+        </b-row>
+      </b-container>
 
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
