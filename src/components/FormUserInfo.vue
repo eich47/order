@@ -36,8 +36,8 @@
           </b-col>
         </b-row>
       </b-container>
-      <div class="col-6 pl-0">
-        <b-button class="mt-5" block type="submit" variant="primary">
+      <div class="col-6 pl-0 mt-3">
+        <b-button block type="submit" variant="primary">
           Continue
         </b-button>
       </div>
