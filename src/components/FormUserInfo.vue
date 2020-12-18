@@ -2,6 +2,7 @@
   <div>
     <b-form>
       <FormSectionTitle text="Recipient" />
+      <FormInputText placeholder="Full Name" />
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
       </b-button>
@@ -11,10 +12,15 @@
 
 <script>
 import FormSectionTitle from "@/components/FormSectionTitle";
+import FormInputText from "@/components/FormInputText";
 export default {
   name: "FormUserInfo",
-  components: { FormSectionTitle }
+  components: { FormInputText, FormSectionTitle }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.wrapper + .wrapper {
+  margin-top: 10px;
+}
+</style>
