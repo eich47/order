@@ -36,10 +36,11 @@
           </b-col>
         </b-row>
       </b-container>
-
-      <b-button class="mt-5" type="submit" variant="primary">
-        Continue
-      </b-button>
+      <div class="col-6 pl-0">
+        <b-button class="mt-5" block type="submit" variant="primary">
+          Continue
+        </b-button>
+      </div>
     </b-form>
   </div>
 </template>
