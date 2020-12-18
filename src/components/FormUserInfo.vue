@@ -15,6 +15,7 @@
         placeholder="Apt, Suite, Gate Code (optional)"
         :isRequiredField="false"
       />
+      <FormInputLocation placeholder="City" :is-required-field="true" />
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
       </b-button>
@@ -26,9 +27,15 @@
 import FormSectionTitle from "@/components/FormSectionTitle";
 import FormInputText from "@/components/FormInputText";
 import FormInputPhone from "@/components/FormInputPhone";
+import FormInputLocation from "@/components/FormInputLocation";
 export default {
   name: "FormUserInfo",
-  components: { FormInputPhone, FormInputText, FormSectionTitle }
+  components: {
+    FormInputLocation,
+    FormInputPhone,
+    FormInputText,
+    FormSectionTitle
+  }
 };
 </script>
 
