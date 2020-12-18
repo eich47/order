@@ -8,6 +8,9 @@
         user-text-part1="For delivery"
         user-text-part2="questions only"
       />
+      <FormSectionTitle text="Address" class="mt-3" />
+      <FormInputText placeholder="Street Address" />
+      <FormInputText placeholder="Apt, Suite, Gate Code (optional)" />
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
       </b-button>
