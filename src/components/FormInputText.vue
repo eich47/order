@@ -18,6 +18,10 @@ export default {
     placeholder: {
       type: String,
       required: true
+    },
+    isRequiredField: {
+      type: Boolean,
+      required: true
     }
   }
 };

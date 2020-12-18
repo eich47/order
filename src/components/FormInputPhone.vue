@@ -37,6 +37,10 @@ export default {
     userTextPart2: {
       type: String,
       required: true
+    },
+    isRequiredField: {
+      type: Boolean,
+      required: true
     }
   }
 };

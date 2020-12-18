@@ -2,15 +2,19 @@
   <div>
     <b-form>
       <FormSectionTitle text="Recipient" />
-      <FormInputText placeholder="Full Name" />
+      <FormInputText placeholder="Full Name" :isRequiredField="true" />
       <FormInputPhone
         placeholder="DayTime Phone"
         user-text-part1="For delivery"
         user-text-part2="questions only"
+        :isRequiredField="true"
       />
       <FormSectionTitle text="Address" class="mt-3" />
-      <FormInputText placeholder="Street Address" />
-      <FormInputText placeholder="Apt, Suite, Gate Code (optional)" />
+      <FormInputText placeholder="Street Address" :isRequiredField="true" />
+      <FormInputText
+        placeholder="Apt, Suite, Gate Code (optional)"
+        :isRequiredField="false"
+      />
       <b-button class="mt-5" type="submit" variant="primary">
         Continue
       </b-button>
