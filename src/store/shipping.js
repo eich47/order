@@ -24,7 +24,11 @@ export default {
     },
     city: "",
     country: "",
-    zip: ""
+    zip: {
+      value: "",
+      isValid: null,
+      isRequired: true
+    }
   }),
   mutations: {
     setFullName(state, payload) {
@@ -53,6 +57,13 @@ export default {
     },
     setIsValidAdditions(state, payload) {
       state.additions.isValid = payload;
+    },
+    //Zip
+    setZip(state, payload) {
+      state.zip.value = payload;
+    },
+    setIsValidZip(state, payload) {
+      state.zip.isValid = payload;
     }
   },
 
@@ -101,6 +112,17 @@ export default {
       }
 
       commit("setAdditions", value);
+    },
+    changeZip({ commit, state }, value) {
+      const validator = new Validation();
+      const isRequired = state.zip.isRequired;
+      if (!validator.isOnlyNumber(value, isRequired)) {
+        commit("setIsValidZip", false);
+      } else {
+        commit("setIsValidZip", true);
+      }
+
+      commit("setZip", value);
     }
   },
   getters: {}

@@ -6,4 +6,13 @@ export default class Validation {
 
     return value.trim() === "";
   }
+
+  isOnlyNumber(value, isRequired) {
+    if (isRequired === false) {
+      return true;
+    }
+
+    const re = /^\d+$/g;
+    return new RegExp(re).test(value);
+  }
 }

@@ -45,7 +45,9 @@
           <b-col sm="6" class="pr-0">
             <FormInputText
               placeholder="ZIP"
-              :is-required-field="true"
+              :isRequiredField="this.$store.state.shipping.zip.isRequired"
+              v-model.trim="zip"
+              :isValid="this.$store.state.shipping.zip.isValid"
             ></FormInputText>
           </b-col>
         </b-row>
@@ -109,6 +111,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changeAdditions", val);
+      }
+    },
+    zip: {
+      get() {
+        return this.$store.state.shipping.zip.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeZip", val);
       }
     }
   }
