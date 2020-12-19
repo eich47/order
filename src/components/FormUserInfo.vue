@@ -2,7 +2,12 @@
   <div>
     <b-form>
       <FormSectionTitle text="Recipient" />
-      <FormInputText placeholder="Full Name" :isRequiredField="true" />
+      <FormInputText
+        placeholder="Full Name"
+        :isRequiredField="this.$store.state.shipping.fullName.isRequired"
+        v-model.trim="fullName"
+        :isValid="this.$store.state.shipping.fullName.isValid"
+      />
       <FormInputPhone
         placeholder="DayTime Phone"
         user-text-part1="For delivery"
@@ -59,6 +64,17 @@ export default {
     FormInputPhone,
     FormInputText,
     FormSectionTitle
+  },
+  computed: {
+    fullName: {
+      get() {
+        return this.$store.state.shipping.fullName.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeFullName", val);
+      }
+    }
   }
 };
 </script>

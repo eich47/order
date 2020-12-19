@@ -1,14 +1,23 @@
 <template>
   <div class="wrapper">
-    <b-form-input type="text" :placeholder="placeholder" v-model="text">
+    <b-form-input
+      type="text"
+      :placeholder="placeholder"
+      :value="value"
+      @input="$emit('input', $event)"
+    >
     </b-form-input>
-    {{ text }}
+    <span v-if="isValid === false">Заполните поле</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "FormInputText",
+  model: {
+    prop: "value",
+    event: "input"
+  },
   data: function() {
     return {
       text: ""
@@ -22,6 +31,13 @@ export default {
     isRequiredField: {
       type: Boolean,
       required: true
+    },
+    value: {
+      type: String
+    },
+    isValid: {
+      required: true,
+      validator: prop => typeof prop === "boolean" || prop === null
     }
   }
 };
