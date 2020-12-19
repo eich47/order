@@ -22,7 +22,11 @@ export default {
       isValid: null,
       isRequired: false
     },
-    city: "",
+    city: {
+      value: "",
+      isValid: null,
+      isRequired: true
+    },
     country: "",
     zip: {
       value: "",
@@ -64,6 +68,13 @@ export default {
     },
     setIsValidZip(state, payload) {
       state.zip.isValid = payload;
+    },
+    //City
+    setCity(state, payload) {
+      state.city.value = payload;
+    },
+    setIsValidCity(state, payload) {
+      state.city.isValid = payload;
     }
   },
 
@@ -123,6 +134,17 @@ export default {
       }
 
       commit("setZip", value);
+    },
+    changeCity({ commit, state }, value) {
+      const validator = new Validation();
+      const isRequired = state.city.isRequired;
+      if (validator.isEmptyString(value, isRequired)) {
+        commit("setIsValidCity", false);
+      } else {
+        commit("setIsValidCity", true);
+      }
+
+      commit("setCity", value);
     }
   },
   getters: {}

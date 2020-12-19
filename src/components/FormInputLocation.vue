@@ -1,19 +1,28 @@
 <template>
   <div class="wrapper">
     <div class="image-wrapper">
-      <b-form-input type="text" :placeholder="placeholder" v-model="text">
+      <b-form-input
+        type="text"
+        :placeholder="placeholder"
+        :value="value"
+        @input="$emit('input', $event)"
+      >
       </b-form-input>
       <img class="location-icon" :src="src" alt="location icon" />
     </div>
+    <span v-if="isValid === false">Заполните поле</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "FormInputLocation",
+  model: {
+    prop: "value",
+    event: "input"
+  },
   data() {
     return {
-      text: "",
       src: require("@/assets/ico/detect_geolocation.png")
     };
   },
@@ -25,6 +34,13 @@ export default {
     isRequiredField: {
       type: Boolean,
       required: true
+    },
+    value: {
+      type: String
+    },
+    isValid: {
+      required: true,
+      validator: prop => typeof prop === "boolean" || prop === null
     }
   }
 };

@@ -29,7 +29,12 @@
         v-model.trim="additions"
         :isValid="this.$store.state.shipping.additions.isValid"
       />
-      <FormInputLocation placeholder="City" :is-required-field="true" />
+      <FormInputLocation
+        placeholder="City"
+        :isRequiredField="this.$store.state.shipping.city.isRequired"
+        v-model.trim="city"
+        :isValid="this.$store.state.shipping.city.isValid"
+      />
       <b-container class="wrapper">
         <b-row>
           <b-col sm="6" class="pl-0">
@@ -120,6 +125,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changeZip", val);
+      }
+    },
+    city: {
+      get() {
+        return this.$store.state.shipping.city.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeCity", val);
       }
     }
   }
