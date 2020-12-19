@@ -12,7 +12,9 @@
         placeholder="DayTime Phone"
         user-text-part1="For delivery"
         user-text-part2="questions only"
-        :isRequiredField="true"
+        :isRequiredField="this.$store.state.shipping.phone.isRequired"
+        :isValid="this.$store.state.shipping.phone.isValid"
+        v-model.trim="phone"
       />
       <FormSectionTitle text="Address" class="mt-3" />
       <FormInputText placeholder="Street Address" :isRequiredField="true" />
@@ -73,6 +75,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changeFullName", val);
+      }
+    },
+    phone: {
+      get() {
+        return this.$store.state.shipping.phone.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changePhone", val);
       }
     }
   }

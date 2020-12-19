@@ -4,9 +4,11 @@
       <div class="col-6 part1">
         <b-form-input
           type="tel"
-          v-model="tel"
           :placeholder="placeholder"
+          :value="value"
+          @input="$emit('input', $event)"
         ></b-form-input>
+        <span v-if="isValid === false">Заполните поле</span>
       </div>
       <div class="col-6 part2">
         <p class="text">
@@ -25,6 +27,10 @@ export default {
       tel: ""
     };
   },
+  model: {
+    prop: "value",
+    event: "input"
+  },
   props: {
     placeholder: {
       type: String,
@@ -41,6 +47,13 @@ export default {
     isRequiredField: {
       type: Boolean,
       required: true
+    },
+    value: {
+      type: String
+    },
+    isValid: {
+      required: true,
+      validator: prop => typeof prop === "boolean" || prop === null
     }
   }
 };
