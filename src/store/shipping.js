@@ -57,16 +57,16 @@ export default {
 
       commit("setFullName", fullNameValue);
     },
-    changePhone({ commit, state }, fullNameValue) {
+    changePhone({ commit, state }, phoneValue) {
       const validator = new Validation();
-      const isRequired = state.fullName.isRequired;
-      if (validator.isEmptyString(fullNameValue, isRequired)) {
+      const isRequired = state.phone.isRequired;
+      if (validator.isEmptyString(phoneValue, isRequired)) {
         commit("setIsValidPhone", false);
       } else {
         commit("setIsValidPhone", true);
       }
 
-      commit("setPhone", fullNameValue);
+      commit("setPhone", phoneValue);
     },
 
     changeAddress({ commit, state }, value) {
