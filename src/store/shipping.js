@@ -12,7 +12,11 @@ export default {
       isValid: null,
       isRequired: true
     },
-    address: "",
+    address: {
+      value: "",
+      isValid: null,
+      isRequired: true
+    },
     additions: "",
     city: "",
     country: "",
@@ -31,8 +35,16 @@ export default {
     },
     setIsValidPhone(state, payload) {
       state.phone.isValid = payload;
+    },
+    //address
+    setAddress(state, payload) {
+      state.address.value = payload;
+    },
+    setIsValidAddress(state, payload) {
+      state.address.isValid = payload;
     }
   },
+
   actions: {
     changeFullName({ commit, state }, fullNameValue) {
       const validator = new Validation();
@@ -55,6 +67,18 @@ export default {
       }
 
       commit("setPhone", fullNameValue);
+    },
+
+    changeAddress({ commit, state }, value) {
+      const validator = new Validation();
+      const isRequired = state.address.isRequired;
+      if (validator.isEmptyString(value, isRequired)) {
+        commit("setIsValidAddress", false);
+      } else {
+        commit("setIsValidAddress", true);
+      }
+
+      commit("setAddress", value);
     }
   },
   getters: {}

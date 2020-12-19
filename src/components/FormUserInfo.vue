@@ -17,7 +17,12 @@
         v-model.trim="phone"
       />
       <FormSectionTitle text="Address" class="mt-3" />
-      <FormInputText placeholder="Street Address" :isRequiredField="true" />
+      <FormInputText
+        placeholder="Street Address"
+        :isRequiredField="this.$store.state.shipping.address.isRequired"
+        v-model.trim="address"
+        :isValid="this.$store.state.shipping.address.isValid"
+      />
       <FormInputText
         placeholder="Apt, Suite, Gate Code (optional)"
         :isRequiredField="false"
@@ -84,6 +89,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changePhone", val);
+      }
+    },
+    address: {
+      get() {
+        return this.$store.state.shipping.address.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeAddress", val);
       }
     }
   }
