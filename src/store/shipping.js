@@ -17,7 +17,11 @@ export default {
       isValid: null,
       isRequired: true
     },
-    additions: "",
+    additions: {
+      value: "",
+      isValid: null,
+      isRequired: false
+    },
     city: "",
     country: "",
     zip: ""
@@ -42,6 +46,13 @@ export default {
     },
     setIsValidAddress(state, payload) {
       state.address.isValid = payload;
+    },
+    //Additions
+    setAdditions(state, payload) {
+      state.additions.value = payload;
+    },
+    setIsValidAdditions(state, payload) {
+      state.additions.isValid = payload;
     }
   },
 
@@ -79,6 +90,17 @@ export default {
       }
 
       commit("setAddress", value);
+    },
+    changeAdditions({ commit, state }, value) {
+      const validator = new Validation();
+      const isRequired = state.additions.isRequired;
+      if (validator.isEmptyString(value, isRequired)) {
+        commit("setIsValidAdditions", false);
+      } else {
+        commit("setIsValidAdditions", true);
+      }
+
+      commit("setAdditions", value);
     }
   },
   getters: {}

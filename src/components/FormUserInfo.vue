@@ -25,7 +25,9 @@
       />
       <FormInputText
         placeholder="Apt, Suite, Gate Code (optional)"
-        :isRequiredField="false"
+        :isRequiredField="this.$store.state.shipping.additions.isRequired"
+        v-model.trim="additions"
+        :isValid="this.$store.state.shipping.additions.isValid"
       />
       <FormInputLocation placeholder="City" :is-required-field="true" />
       <b-container class="wrapper">
@@ -98,6 +100,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changeAddress", val);
+      }
+    },
+    additions: {
+      get() {
+        return this.$store.state.shipping.additions.value;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeAdditions", val);
       }
     }
   }
