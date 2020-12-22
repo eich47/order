@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form>
+    <b-form @submit.prevent="onSubmit">
       <FormSectionTitle text="Recipient" />
       <FormInputText
         placeholder="Full Name"
@@ -45,6 +45,7 @@
               :options="this.$store.state.shipping.country.value"
               v-model="country"
               :isRequiredField="true"
+              :isValid="this.$store.state.shipping.country.isValid"
             />
           </b-col>
           <b-col sm="6" class="pr-0">
@@ -58,7 +59,12 @@
         </b-row>
       </b-container>
       <div class="col-6 pl-0 mt-3">
-        <b-button block type="submit" variant="primary">
+        <b-button
+          block
+          type="submit"
+          variant="primary"
+          :disabled="!this.$store.state.shipping.isValidAllData"
+        >
           Continue
         </b-button>
       </div>
@@ -149,6 +155,9 @@ export default {
   methods: {
     onClickLocation() {
       this.$store.dispatch("defineLocation");
+    },
+    onSubmit() {
+      this.$store.dispatch("submitShipping");
     }
   }
 };

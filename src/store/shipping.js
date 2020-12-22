@@ -51,7 +51,9 @@ export default {
       success: null,
       failure: null,
       process: false
-    }
+    },
+    //прошли ли данные в форме проверку
+    isValidAllData: true
   }),
   mutations: {
     setFullName(state, payload) {
@@ -115,6 +117,10 @@ export default {
     },
     setSelectedCounty(state, payload) {
       state.country.selected = payload;
+    },
+    //установить статус проверки данных
+    setIsValidAllData(state, payload) {
+      state.isValidAllData = payload;
     }
   },
 
@@ -229,11 +235,13 @@ export default {
 
           if (searchedLocation !== undefined) {
             commit("setSelectedCounty", searchedLocation.value);
+            commit("setIsValidCountry", true);
           } else {
             console.log("not found country in country's list");
           }
 
           commit("setCity", city);
+          commit("setIsValidCity", true);
           commit("setGeoSuccess", true);
         })
         .catch(error => {
@@ -255,6 +263,26 @@ export default {
       }
 
       commit("setSelectedCounty", value);
+    },
+
+    submitShipping({ state, commit }) {
+      const fieldList = [
+        "fullName",
+        "phone",
+        "address",
+        "additions",
+        "city",
+        "country",
+        "zip"
+      ];
+      fieldList.map(field => {
+        console.log(field);
+        if (state[field].isRequired === true && state[field].isValid === null) {
+          const fieldFirstUpper = field[0].toUpperCase() + field.slice(1);
+          commit(`setIsValid${fieldFirstUpper}`, false);
+          commit("setIsValidAllData", false);
+        }
+      });
     }
   },
   getters: {}
