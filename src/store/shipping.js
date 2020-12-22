@@ -1,4 +1,5 @@
 import Validation from "@/domain/Validation";
+import { API_KEY } from "@/api";
 
 export default {
   state: () => ({
@@ -32,6 +33,11 @@ export default {
       value: "",
       isValid: null,
       isRequired: true
+    },
+    geo: {
+      success: null,
+      failure: null,
+      process: false
     }
   }),
   mutations: {
@@ -75,6 +81,17 @@ export default {
     },
     setIsValidCity(state, payload) {
       state.city.isValid = payload;
+    },
+
+    //геолокация
+    setGeoProcess(state, payload) {
+      state.geo.process = payload;
+    },
+    setGeoSuccess(state, payload) {
+      state.geo.success = payload;
+    },
+    setGeoFailure(state, payload) {
+      state.geo.failure = payload;
     }
   },
 
@@ -145,6 +162,51 @@ export default {
       }
 
       commit("setCity", value);
+    },
+    defineLocation({ commit }) {
+      commit("setGeoProcess", true);
+      if (!navigator.geolocation) {
+        console.log("geo location fail");
+        commit("setGeoFailure", true);
+        commit("setGeoProcess", false);
+        return false;
+      }
+
+      new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      })
+        .then(position => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          const host = "http://api.positionstack.com/v1/";
+          const param = `reverse?access_key=${API_KEY}&query=${latitude},${longitude}&limit=1`;
+          const url = `${host}${param}`;
+          return fetch(url);
+        })
+        .then(result => {
+          if (result.status !== 200) {
+            return new Error("Не удалось определить местоположение");
+          }
+
+          return result.json();
+        })
+        .then(json => {
+          const data = json.data[0];
+          const city = data.region;
+          const country = data.country;
+          console.log(city, country);
+
+          commit("setCity", city);
+          commit("setGeoSuccess", true);
+        })
+        .catch(error => {
+          console.log(error);
+          commit("setGeoFailure", true);
+        })
+        .finally(() => {
+          commit("setGeoProcess", false);
+        });
     }
   },
   getters: {}

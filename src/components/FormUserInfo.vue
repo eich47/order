@@ -34,6 +34,9 @@
         :isRequiredField="this.$store.state.shipping.city.isRequired"
         v-model.trim="city"
         :isValid="this.$store.state.shipping.city.isValid"
+        @click="onClickLocation"
+        :errorOnDefineGeo="this.$store.state.shipping.geo.failure"
+        :inProcessDefineGeo="this.$store.state.shipping.geo.process"
       />
       <b-container class="wrapper">
         <b-row>
@@ -135,6 +138,11 @@ export default {
         console.log(val);
         this.$store.dispatch("changeCity", val);
       }
+    }
+  },
+  methods: {
+    onClickLocation() {
+      this.$store.dispatch("defineLocation");
     }
   }
 };

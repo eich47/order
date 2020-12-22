@@ -8,9 +8,20 @@
         @input="$emit('input', $event)"
       >
       </b-form-input>
-      <img class="location-icon" :src="src" alt="location icon" />
+      <img
+        class="location-icon"
+        :src="src"
+        alt="location icon"
+        @click="$emit('click')"
+      />
     </div>
     <span v-if="isValid === false">Заполните поле</span>
+    <span v-if="errorOnDefineGeo === false"
+      >Не удалось определить местоположение</span
+    >
+    <span v-if="inProcessDefineGeo === true"
+      >Пробуем определить местоположение...</span
+    >
   </div>
 </template>
 
@@ -41,6 +52,14 @@ export default {
     isValid: {
       required: true,
       validator: prop => typeof prop === "boolean" || prop === null
+    },
+    errorOnDefineGeo: {
+      type: Boolean,
+      required: true
+    },
+    inProcessDefineGeo: {
+      type: Boolean,
+      required: true
     }
   }
 };
