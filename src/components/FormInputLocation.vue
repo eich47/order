@@ -55,7 +55,7 @@ export default {
     },
     errorOnDefineGeo: {
       type: Boolean,
-      required: true
+      validator: prop => typeof prop === "boolean" || prop === null
     },
     inProcessDefineGeo: {
       type: Boolean,
