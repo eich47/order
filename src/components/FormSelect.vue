@@ -1,17 +1,27 @@
 <template>
   <div class="wrapper">
-    <b-form-select v-model="selected" :options="options"> </b-form-select>
+    <b-form-select
+      :options="options"
+      :value="value"
+      @change="$emit('change', $event)"
+    >
+    </b-form-select>
   </div>
 </template>
 
 <script>
 export default {
   name: "FormSelect",
-  data() {
-    return {
-      selected: null
-    };
+  model: {
+    prop: "value",
+    event: "change"
   },
+  // data() {
+  //   return {
+  //     selected: null,
+  //     sdf: 1
+  //   };
+  // },
   props: {
     options: {
       type: Array,
@@ -20,6 +30,10 @@ export default {
     isRequiredField: {
       type: Boolean,
       required: true
+    },
+    value: {
+      type: Number,
+      validator: prop => typeof prop === "number" || prop === null
     }
   }
 };

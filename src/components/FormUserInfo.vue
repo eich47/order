@@ -42,11 +42,8 @@
         <b-row>
           <b-col sm="6" class="pl-0">
             <FormSelect
-              :options="[
-                { value: null, text: 'Country' },
-                { value: 1, text: 'Minsk' },
-                { value: 2, text: 'London' }
-              ]"
+              :options="this.$store.state.shipping.country.value"
+              v-model="country"
               :isRequiredField="true"
             />
           </b-col>
@@ -137,6 +134,15 @@ export default {
       set(val) {
         console.log(val);
         this.$store.dispatch("changeCity", val);
+      }
+    },
+    country: {
+      get() {
+        return this.$store.state.shipping.country.selected;
+      },
+      set(val) {
+        console.log(val);
+        this.$store.dispatch("changeCountry", val);
       }
     }
   },

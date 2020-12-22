@@ -28,7 +28,20 @@ export default {
       isValid: null,
       isRequired: true
     },
-    country: "",
+    country: {
+      value: [
+        { value: null, text: "Country" },
+        { value: 1, text: "Germany" },
+        { value: 2, text: "France" },
+        { value: 3, text: "Italy" },
+        { value: 4, text: "Russia" },
+        { value: 5, text: "Belarus" },
+        { value: 6, text: "Spain" }
+      ],
+      selected: null,
+      isValid: null,
+      isRequired: true
+    },
     zip: {
       value: "",
       isValid: null,
@@ -92,6 +105,16 @@ export default {
     },
     setGeoFailure(state, payload) {
       state.geo.failure = payload;
+    },
+    //County
+    setIsValidCountry(state, payload) {
+      state.country.isValid = payload;
+    },
+    setCountry(state, payload) {
+      state.country.value = payload;
+    },
+    setSelectedCounty(state, payload) {
+      state.country.selected = payload;
     }
   },
 
@@ -207,6 +230,18 @@ export default {
         .finally(() => {
           commit("setGeoProcess", false);
         });
+    },
+
+    changeCountry({ commit, state }, value) {
+      const validator = new Validation();
+      const isRequired = state.country.isRequired;
+      if (validator.isSelected(value, isRequired)) {
+        commit("setIsValidCountry", true);
+      } else {
+        commit("setIsValidCountry", false);
+      }
+
+      commit("setSelectedCounty", value);
     }
   },
   getters: {}

@@ -15,4 +15,11 @@ export default class Validation {
     const re = /^\d+$/g;
     return new RegExp(re).test(value);
   }
+
+  isSelected(value, isRequired) {
+    if (isRequired === false) {
+      return true;
+    }
+    return value !== null;
+  }
 }
