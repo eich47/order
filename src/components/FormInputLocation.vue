@@ -78,5 +78,6 @@ input {
   top: 50%;
   transform: translate(0, -50%);
   z-index: 1;
+  cursor: pointer;
 }
 </style>
