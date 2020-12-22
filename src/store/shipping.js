@@ -186,7 +186,7 @@ export default {
 
       commit("setCity", value);
     },
-    defineLocation({ commit }) {
+    defineLocation({ commit, state }) {
       commit("setGeoProcess", true);
       if (!navigator.geolocation) {
         console.log("geo location fail");
@@ -219,6 +219,19 @@ export default {
           const city = data.region;
           const country = data.country;
           console.log(city, country);
+          const locations = state.country.value;
+          const searchedLocation = locations.find(value => {
+            const countryStr = value.text;
+            return (
+              country.toLocaleLowerCase() === countryStr.toLocaleLowerCase()
+            );
+          });
+
+          if (searchedLocation !== undefined) {
+            commit("setSelectedCounty", searchedLocation.value);
+          } else {
+            console.log("not found country in country's list");
+          }
 
           commit("setCity", city);
           commit("setGeoSuccess", true);
