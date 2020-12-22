@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper phone">
-    <div class="d-flex">
+    <div class="d-flex align-items-start">
       <div class="col-6 part1">
         <b-form-input
           type="tel"
