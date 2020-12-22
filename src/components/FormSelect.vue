@@ -6,6 +6,7 @@
       @change="$emit('change', $event)"
     >
     </b-form-select>
+    <span v-if="isValid === false">Заполните поле</span>
   </div>
 </template>
 
@@ -32,8 +33,11 @@ export default {
       required: true
     },
     value: {
-      type: Number,
       validator: prop => typeof prop === "number" || prop === null
+    },
+    isValid: {
+      required: true,
+      validator: prop => typeof prop === "boolean" || prop === null
     }
   }
 };
