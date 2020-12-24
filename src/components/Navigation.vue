@@ -5,7 +5,6 @@
         v-for="navItem in navigationItem"
         :key="navItem.id"
         class="way-item"
-        :class="{ active: navItem.active }"
         :style="styleArrow"
         :to="navItem.routerTo"
         >{{ navItem.ui }}</b-nav-item
@@ -26,16 +25,14 @@ export default {
         {
           id: 1,
           ui: "Shipping",
-          active: true,
           routerTo: { name: "shippingInfo" }
         },
         {
           id: 2,
           ui: "Billing",
-          active: false,
           routerTo: { name: "billingInfo" }
         },
-        { id: 3, ui: "Payment", active: false }
+        { id: 3, ui: "Payment" }
       ]
     };
   }
@@ -54,7 +51,7 @@ export default {
     background-image: none !important;
   }
 }
-.active .nav-link {
+.router-link-exact-active {
   color: $primary;
 }
 </style>
