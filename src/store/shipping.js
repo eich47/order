@@ -1,5 +1,6 @@
 import Validation from "@/domain/Validation";
 import { API_KEY } from "@/api";
+import router from "@/router";
 
 export default {
   state: () => ({
@@ -283,6 +284,24 @@ export default {
           commit("setIsValidAllData", false);
         }
       });
+
+      fieldList.map(field => {
+        if (state[field].isValid === false) {
+          commit("setIsValidAllData", false);
+        }
+      });
+      //разблокируем кнопку, чтобы можно было на ее нажать и тем самым запустить эту функцию
+      setTimeout(() => {
+        commit("setIsValidAllData", true);
+      }, 1000);
+
+      if (state.isValidAllData === true) {
+        router.push({ name: "billingInfo" });
+      } else {
+        console.log(
+          `форма не отправлена: state.isValidAllData: ${state.isValidAllData}`
+        );
+      }
     }
   },
   getters: {}
