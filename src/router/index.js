@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ShoppingInfo from "@/components/ShoppingInfo";
+import BillingInfo from "@/views/BillingInfo";
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,11 @@ const routes = [
     path: "/",
     name: "shoppingInfo",
     component: ShoppingInfo
+  },
+  {
+    path: "/billing",
+    name: "billingInfo",
+    component: BillingInfo
   }
 ];
 

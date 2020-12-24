@@ -29,7 +29,12 @@ export default {
           active: true,
           routerTo: { name: "shippingInfo" }
         },
-        { id: 2, ui: "Billing", active: false },
+        {
+          id: 2,
+          ui: "Billing",
+          active: false,
+          routerTo: { name: "billingInfo" }
+        },
         { id: 3, ui: "Payment", active: false }
       ]
     };
