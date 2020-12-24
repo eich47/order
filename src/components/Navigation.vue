@@ -32,7 +32,7 @@ export default {
           ui: "Billing",
           routerTo: { name: "billingInfo" }
         },
-        { id: 3, ui: "Payment" }
+        { id: 3, ui: "Payment", routerTo: { name: "payment" } }
       ]
     };
   }
