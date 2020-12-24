@@ -7,6 +7,7 @@
         class="way-item"
         :class="{ active: navItem.active }"
         :style="styleArrow"
+        :to="navItem.routerTo"
         >{{ navItem.ui }}</b-nav-item
       >
     </b-nav>
@@ -22,7 +23,12 @@ export default {
         backgroundImage: `url(${require("@/assets/ico/nav-arrow.png")})`
       },
       navigationItem: [
-        { id: 1, ui: "Shipping", active: true },
+        {
+          id: 1,
+          ui: "Shipping",
+          active: true,
+          routerTo: { name: "shippingInfo" }
+        },
         { id: 2, ui: "Billing", active: false },
         { id: 3, ui: "Payment", active: false }
       ]
