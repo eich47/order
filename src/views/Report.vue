@@ -11,6 +11,7 @@
       <p>
         Estimated delivery Day is <span class="date">{{ deliveryDay }}</span>
       </p>
+      <router-link :to="{ name: 'shippingInfo' }">в начало</router-link>
     </template>
   </div>
 </template>
@@ -26,7 +27,6 @@ export default {
     },
     deliveryDay() {
       const date = new Date(this.$store.state.report.deliveryDay);
-      console.log(this.$store.state.report.deliveryDay);
       let formatter = new Intl.DateTimeFormat("ru", {
         weekday: "long",
         year: "numeric",
@@ -44,6 +44,13 @@ export default {
   },
   created() {
     this.$store.dispatch("getReport");
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.name === "shippingInfo") {
+      next();
+    } else {
+      next(false);
+    }
   }
 };
 </script>
