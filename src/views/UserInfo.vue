@@ -2,7 +2,7 @@
   <b-container>
     <Navigation />
 
-    <router-view></router-view>
+    <router-view class="shipping"></router-view>
   </b-container>
 </template>
 
@@ -14,4 +14,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.shipping {
+  padding-left: 16px;
+}
+</style>
