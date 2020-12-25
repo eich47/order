@@ -42,7 +42,6 @@ export default {
       {
         const fieldList = ["cardNumber"];
         fieldList.map(field => {
-          console.log(field);
           if (
             state[field].isRequired === true &&
             state[field].isValid === null
@@ -64,8 +63,7 @@ export default {
         }, 1000);
 
         if (state.isValidAllData === true) {
-          //todo добавить роутер
-          router.push({ name: "" });
+          router.push({ name: "configuration" });
         } else {
           console.log(
             `форма payment не отправлена: state.isValidAllData: ${state.isValidAllData}`
