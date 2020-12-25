@@ -3,21 +3,24 @@
     <b-container>
       <b-row>
         <b-col sm="6">
-          <Navigation />
-
-          <router-view></router-view>
+          <router-view />
         </b-col>
-        <b-col sm="5">22</b-col>
+        <b-col sm="5"
+          >22
+          <router-view name="goodsList" />
+        </b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
-import Navigation from "./components/Navigation";
 export default {
   name: "App",
-  components: { Navigation }
+  components: {},
+  created() {
+    this.$router.push({ name: "shippingInfo" });
+  }
 };
 </script>
 

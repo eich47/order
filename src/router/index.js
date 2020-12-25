@@ -4,24 +4,31 @@ import ShoppingInfo from "@/components/ShoppingInfo";
 import BillingInfo from "@/views/BillingInfo";
 import PaymentInfo from "@/views/PaymentInfo";
 import Report from "@/views/Report";
+import UserInfo from "@/views/UserInfo";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "shippingInfo",
-    component: ShoppingInfo
-  },
-  {
-    path: "/billing",
-    name: "billingInfo",
-    component: BillingInfo
-  },
-  {
-    path: "/payment",
-    name: "payment",
-    component: PaymentInfo
+    component: UserInfo,
+    children: [
+      {
+        path: "shipping",
+        name: "shippingInfo",
+        component: ShoppingInfo
+      },
+      {
+        path: "billing",
+        name: "billingInfo",
+        component: BillingInfo
+      },
+      {
+        path: "payment",
+        name: "payment",
+        component: PaymentInfo
+      }
+    ]
   },
   {
     path: "/configuration",
