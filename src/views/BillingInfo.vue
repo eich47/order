@@ -21,6 +21,7 @@ export default {
   methods: {
     onSubmit() {
       console.log("onSumbit billing info");
+      this.$router.push({ name: "payment" });
     }
   }
 };
