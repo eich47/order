@@ -5,8 +5,7 @@
         <b-col sm="6">
           <router-view />
         </b-col>
-        <b-col sm="5"
-          >22
+        <b-col sm="5">
           <router-view name="goodsList" />
         </b-col>
       </b-row>

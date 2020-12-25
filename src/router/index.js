@@ -5,13 +5,17 @@ import BillingInfo from "@/views/BillingInfo";
 import PaymentInfo from "@/views/PaymentInfo";
 import Report from "@/views/Report";
 import UserInfo from "@/views/UserInfo";
+import GoodsList from "@/views/GoodsList";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    component: UserInfo,
+    components: {
+      default: UserInfo,
+      goodsList: GoodsList
+    },
     children: [
       {
         path: "shipping",
