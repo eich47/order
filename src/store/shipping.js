@@ -208,7 +208,6 @@ export default {
         .then(position => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-
           const host = "https://api.positionstack.com/v1/";
           const param = `reverse?access_key=${API_KEY}&query=${latitude},${longitude}&limit=1`;
           const url = `${host}${param}`;
@@ -216,7 +215,9 @@ export default {
         })
         .then(result => {
           if (result.status !== 200) {
-            return new Error("Не удалось определить местоположение");
+            throw new Error(
+              `Не удалось определить местоположение, response status: ${result.status}`
+            );
           }
 
           return result.json();
@@ -246,7 +247,7 @@ export default {
           commit("setGeoSuccess", true);
         })
         .catch(error => {
-          console.log(error);
+          console.log("error is: ", error);
           commit("setGeoFailure", true);
         })
         .finally(() => {
