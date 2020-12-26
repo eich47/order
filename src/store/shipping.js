@@ -1,6 +1,6 @@
 import Validation from "@/domain/Validation";
-import { API_KEY } from "@/api";
 import router from "@/router";
+import Geolocation from "@/domain/Util";
 
 export default {
   state: () => ({
@@ -208,23 +208,11 @@ export default {
         .then(position => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          const host = "https://api.positionstack.com/v1/";
-          const param = `reverse?access_key=${API_KEY}&query=${latitude},${longitude}&limit=1`;
-          const url = `${host}${param}`;
-          return fetch(url);
-        })
-        .then(result => {
-          if (result.status !== 200) {
-            throw new Error(
-              `Не удалось определить местоположение, response status: ${result.status}`
-            );
-          }
 
-          return result.json();
+          return new Geolocation(latitude, longitude).getCityCountry();
         })
-        .then(json => {
-          const data = json.data[0];
-          const city = data.region;
+        .then(data => {
+          const city = data.city;
           const country = data.country;
           console.log(city, country);
           const locations = state.country.value;
