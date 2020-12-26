@@ -209,7 +209,7 @@ export default {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
 
-          const host = "http://api.positionstack.com/v1/";
+          const host = "https://api.positionstack.com/v1/";
           const param = `reverse?access_key=${API_KEY}&query=${latitude},${longitude}&limit=1`;
           const url = `${host}${param}`;
           return fetch(url);
