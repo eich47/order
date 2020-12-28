@@ -6,13 +6,17 @@
       @change="$emit('change', $event)"
     >
     </b-form-select>
-    <span v-if="isValid === false">Заполните поле</span>
+    <FormErrorMessage v-if="isValid === false" message="Заполните поле" />
   </div>
 </template>
 
 <script>
+import FormErrorMessage from "@/components/FormErrorMessage";
 export default {
   name: "FormSelect",
+  components: {
+    FormErrorMessage
+  },
   model: {
     prop: "value",
     event: "change"

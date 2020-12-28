@@ -15,7 +15,7 @@
         @click="$emit('click')"
       />
     </div>
-    <span v-if="isValid === false">Заполните поле</span>
+    <FormErrorMessage v-if="isValid === false" message="Заполните поле" />
     <span v-if="errorOnDefineGeo === false"
       >Не удалось определить местоположение</span
     >
@@ -26,8 +26,10 @@
 </template>
 
 <script>
+import FormErrorMessage from "@/components/FormErrorMessage";
 export default {
   name: "FormInputLocation",
+  components: { FormErrorMessage },
   model: {
     prop: "value",
     event: "input"

@@ -8,7 +8,7 @@
           :value="value"
           @input="$emit('input', $event)"
         ></b-form-input>
-        <span v-if="isValid === false">Заполните поле</span>
+        <FormErrorMessage v-if="isValid === false" message="Заполните поле" />
       </div>
       <div class="col-6 part2">
         <p class="text">
@@ -20,8 +20,10 @@
 </template>
 
 <script>
+import FormErrorMessage from "@/components/FormErrorMessage";
 export default {
   name: "FormInputPhone",
+  components: { FormErrorMessage },
   data() {
     return {
       tel: ""

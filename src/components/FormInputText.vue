@@ -7,13 +7,15 @@
       @input="$emit('input', $event)"
     >
     </b-form-input>
-    <span v-if="isValid === false">Заполните поле</span>
+    <FormErrorMessage v-if="isValid === false" message="Заполните поле" />
   </div>
 </template>
 
 <script>
+import FormErrorMessage from "@/components/FormErrorMessage";
 export default {
   name: "FormInputText",
+  components: { FormErrorMessage },
   model: {
     prop: "value",
     event: "input"
