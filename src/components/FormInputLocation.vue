@@ -19,7 +19,7 @@
     <span v-if="errorOnDefineGeo === false"
       >Не удалось определить местоположение</span
     >
-    <span v-if="inProcessDefineGeo === true" class="progress"
+    <span v-if="inProcessDefineGeo === true" class="progress-location"
       >Пробуем определить местоположение...</span
     >
   </div>
@@ -82,7 +82,7 @@ input {
   z-index: 1;
   cursor: pointer;
 }
-.progress {
+.progress-location {
   color: green;
 }
 </style>
